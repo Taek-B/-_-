@@ -13,10 +13,10 @@ create table board_info_table(
 	board_info_name varchar2(500) not null
 );
 
-insert into board_info_table(board_info_idx, board_info_name) values (1, 'ììœ ê²Œì‹œíŒ');
-insert into board_info_table(board_info_idx, board_info_name) values (2, 'ìœ ë¨¸ê²Œì‹œíŒ');
-insert into board_info_table(board_info_idx, board_info_name) values (3, 'ì •ì¹˜ê²Œì‹œíŒ');
-insert into board_info_table(board_info_idx, board_info_name) values (4, 'ìŠ¤í¬ì¸ ê²Œì‹œíŒ');
+insert into board_info_table(board_info_idx, board_info_name) values (1, 'ÀÚÀ¯°Ô½ÃÆÇ');
+insert into board_info_table(board_info_idx, board_info_name) values (2, 'À¯¸Ó°Ô½ÃÆÇ');
+insert into board_info_table(board_info_idx, board_info_name) values (3, 'Á¤Ä¡°Ô½ÃÆÇ');
+insert into board_info_table(board_info_idx, board_info_name) values (4, '½ºÆ÷Ã÷°Ô½ÃÆÇ');
 
 commit;
 
@@ -38,4 +38,3 @@ create table content_table(
 	                  constraint CONTENT_FK2 references board_info_table(board_info_idx),
 	content_date date not null
 );
-[ì¶œì²˜] í…Œì´ë¸” ì‘ì„±|ì‘ì„±ì drv982
