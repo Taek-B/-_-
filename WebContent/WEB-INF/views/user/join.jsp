@@ -49,7 +49,7 @@ form span {
 							<div class="form-group">
 								<form:label path="user_id">아이디</form:label>
 								<div class="input-group">
-									<form:input path="user_id" class="form-control" />
+									<form:input path="user_id" onchange="resetUserIdExist()" class="form-control" />
 									<div class="input-group-append">
 										<button type="button" onclick="checkUserIdExist()"
 											class="btn btn-primary">중복확인</button>
