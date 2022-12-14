@@ -51,8 +51,8 @@
 본문입니다</textarea>
 						</div>
 						<div class="form-group">
-							<label for="board_file">첨부 이미지</label> <img src="../image/logo.png"
-								width="100%" />
+							<label for="board_file">첨부 이미지</label> 
+							<img src="${root}image/spring-logo.svg" width="100%" />
 						</div>
 						<div class="form-group">
 							<div class="text-right">
