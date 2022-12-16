@@ -1,12 +1,23 @@
+--테이블 초기화(삭제)
+drop table "SCOTT"."CONTENT_TABLE";
+drop table "SCOTT"."USER_TABLE";
+drop table "SCOTT"."BOARD_INFO_TABLE";
+
+DROP SEQUENCE user_seq;
+DROP SEQUENCE content_seq;
+
+COMMIT;
+
+-- 테이블 생성
 create sequence user_seq
-start with 0
+start with 1
 increment by 1
-minvalue 0;
+minvalue 1;
 
 create sequence content_seq
-start with 0
+start with 1
 increment by 1
-minvalue 0;
+minvalue 1;
 
 create table board_info_table(
 	board_info_idx number constraint BOARD_INFO_PK primary key,
@@ -38,3 +49,12 @@ create table content_table(
 	                  constraint CONTENT_FK2 references board_info_table(board_info_idx),
 	content_date date not null
 );
+
+commit;
+--select  t1.content_idx, t1.content_subject, t2.user_name as content_writer_name, 
+--        to_char(t1.content_date, 'YYYY-MM-DD') as content_date 
+--        from content_table t1
+--        JOIN user_table t2 
+--        ON t1.content_writer_idx = t2.user_idx
+--        and t1.content_board_idx = 1 order by 1 desc;
+

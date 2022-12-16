@@ -74,6 +74,7 @@ public class SpringConfigClass extends AbstractAnnotationConfigDispatcherServlet
 		super.customizeRegistration(registration);
 		
 		// 5242880 바이트  = 50 메가바이트
+		//이미지나 파일의 용량을 하나는 5메가바이트 한번에 업로드 가능 50메가
 		MultipartConfigElement config1 = new MultipartConfigElement(null, 5242880, 52428800, 0);
 		registration.setMultipartConfig(config1);
 	}

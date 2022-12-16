@@ -29,7 +29,7 @@
 			<div class="col-sm-6">
 				<div class="card shadow">
 					<div class="card-body">
-						<form:form action='${root }user/modify_pro' method='post'
+						<form:form action='${root }user/modify_pro?	page=${page}' method='post'
 							modelAttribute="modifyUserBean">
 							<form:hidden path="userIdChecked" value="true" />
 							<div class="form-group">

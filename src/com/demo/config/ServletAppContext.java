@@ -22,10 +22,12 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import com.demo.beans.LoginUserBean;
 import com.demo.interceptor.CheckLoginInterceptor;
+import com.demo.interceptor.CheckWriterInterceptor;
 import com.demo.interceptor.MenuInterceptor;
 import com.demo.mapper.BoardMapper;
 import com.demo.mapper.MenuMapper;
 import com.demo.mapper.UserMapper;
+import com.demo.service.BoardService;
 import com.demo.service.MenuService;
 
 //Spring MVC 관련된 설정을 하는 클래스
@@ -56,6 +58,10 @@ public class ServletAppContext implements WebMvcConfigurer {
 
 	@Resource(name = "loginUserBean")
 	private LoginUserBean loginUserBean;
+	
+	@Autowired
+	private BoardService boardService;
+	
 	
 
 	// Controller의 메서드가 반환하는 jsp의 이름 앞뒤에 경로와 확장자를 붙혀주도록 설정한다.
@@ -93,13 +99,6 @@ public class ServletAppContext implements WebMvcConfigurer {
 		return factory;
 	}
 
-	// 쿼리문 실행을 위한 객체
-//	@Bean
-//	public MapperFactoryBean<MapperInterface> test_mapper(SqlSessionFactory factory) throws Exception {
-//		MapperFactoryBean<MapperInterface> factoryBean = new MapperFactoryBean<MapperInterface>(MapperInterface.class);
-//		factoryBean.setSqlSessionFactory(factory);
-//		return factoryBean;
-//	}
 
 	// 쿼리문 실행을 위한 매퍼 객체
 	@Bean
@@ -136,9 +135,16 @@ public class ServletAppContext implements WebMvcConfigurer {
 		CheckLoginInterceptor checkLoginInterceptor = new CheckLoginInterceptor(loginUserBean);
 		InterceptorRegistration reg2 = registry.addInterceptor(checkLoginInterceptor);
 
+		CheckWriterInterceptor checkWriterInterceptor = new CheckWriterInterceptor(loginUserBean, boardService);
+		InterceptorRegistration reg3 = registry.addInterceptor(checkWriterInterceptor);
+		
+		
 		reg1.addPathPatterns("/**"); // 모든 요청에 적용됨
+		
 		reg2.addPathPatterns("/user/modify", "/user/logout", "/board/*");
 		reg2.excludePathPatterns("/board/main");
+		
+		reg3.addPathPatterns("/board/modify", "/board/delete");
 
 	}
 	
